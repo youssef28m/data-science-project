@@ -6,11 +6,11 @@ library(visNetwork) # For visualizing association rules as network graphs
 
 
 # Import required R scripts
-source("C:/Users/Asus/Desktop/programming/dsProject/R/installing.R")
-source("C:/Users/Asus/Desktop/programming/dsProject/R/data_cleaning.R")
-source("C:/Users/Asus/Desktop/programming/dsProject/R/visualization.R")
-source("C:/Users/Asus/Desktop/programming/dsProject/R/clustering.R")
-source("C:/Users/Asus/Desktop/programming/dsProject/R/association.R")
+source("R/installing.R")
+source("R/data_cleaning.R")
+source("R/visualization.R")
+source("R/clustering.R")
+source("R/association.R")
 
 # Home page UI - File input for importing data and displaying sample data
 home_page <- card(
