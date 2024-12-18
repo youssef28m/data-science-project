@@ -1,12 +1,9 @@
 # Load necessary libraries
-library(ggplot2)  # For creating visualizations
-library(dplyr)    # For data manipulation
-library(scales)   # For formatting scales (e.g., adding commas to numbers)
-library(plotly)   # For creating interactive visualizations
+library(ggplot2)
+library(dplyr)
+library(scales)
+library(plotly)
 
-# Commented code (For development only)
-# Uncomment and edit the following line to load your dataset.
-# data <- read.csv("C:/path/to/data.csv")
 
 # Function to summarize total spending by age
 age_spending_summray <- function(data) {
@@ -22,20 +19,20 @@ age_spending_visualization <- function(age_summray) {
 
   # Create a bar plot for total spending by age
   plot <- ggplot(age_summray, aes(x = age, y = total_spending)) +
-    geom_bar(stat = "identity", fill = "steelblue") +  # Create bars with height corresponding to total spending
+    geom_bar(stat = "identity", fill = "steelblue") +
     labs(
-      title = "Total Spending by Age",  # Main plot title
-      x = "Age",                        # Label for the x-axis
-      y = "Total Spending"              # Label for the y-axis
+      title = "Total Spending by Age",
+      x = "Age",
+      y = "Total Spending"
     ) +
-    scale_x_continuous(breaks = unique(age_summray$age)) +  # Ensure all unique age values are shown on the x-axis
+    scale_x_continuous(breaks = unique(age_summray$age)) +
     scale_y_continuous(
-      breaks = seq(0, max(age_summray$total_spending), by = 100000),  # Y-axis intervals
-      labels = label_comma()  # Format labels with commas for readability
+      breaks = seq(0, max(age_summray$total_spending), by = 100000),
+      labels = label_comma()
     ) +
-    theme(axis.text.x = element_text(size = 7))  # Adjust x-axis text size for better visibility
+    theme(axis.text.x = element_text(size = 7))
 
-  return(ggplotly(plot))  # Convert the plot to an interactive Plotly plot
+  return(ggplotly(plot))
 }
 
 # Function to summarize total spending by city
@@ -53,20 +50,20 @@ city_spending_visualization <- function(city_summray) {
 
   # Create a bar plot for total spending by city
   plot <- ggplot(city_summray, aes(x = reorder(city, -total_spending), y = total_spending, fill = city)) +
-    geom_bar(stat = "identity") +  # Create bars with height corresponding to total spending
+    geom_bar(stat = "identity") +
     labs(
-      title = "Total Spending by City",  # Main plot title
-      x = "City",                        # Label for the x-axis
-      y = "Total Spending"               # Label for the y-axis
+      title = "Total Spending by City",
+      x = "City",
+      y = "Total Spending"
     ) +
-    theme_minimal() +  # Use a minimal theme for cleaner visuals
+    theme_minimal() +
     scale_y_continuous(
-      breaks = seq(0, max(city_summray$total_spending), by = 500000),  # Y-axis intervals
-      labels = label_comma()  # Format labels with commas
+      breaks = seq(0, max(city_summray$total_spending), by = 500000),
+      labels = label_comma()
     ) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-  return(ggplotly(plot))  # Convert the plot to an interactive Plotly plot
+  return(ggplotly(plot))
 }
 
 # Function to summarize total spending by payment type
@@ -101,18 +98,18 @@ spending_distribution_visualization <- function(data) {
 
   # Create a histogram to visualize the spending distribution
   plot <- ggplot(data, aes(x = total)) +
-    geom_histogram(binwidth = 100, fill = "steelblue", color = "black") +  # Define bin width and colors
+    geom_histogram(binwidth = 100, fill = "steelblue", color = "black") +  
     labs(
-      title = "Distribution of Total Spending",  # Main plot title
-      x = "Total Spending",                      # Label for the x-axis
-      y = "Count"                                # Label for the y-axis
+      title = "Distribution of Total Spending",
+      x = "Total Spending",
+      y = "Count"
     ) +
     scale_x_continuous(
-      breaks = seq(0, max(data$total), by = 200)  # Set intervals for the x-axis
+      breaks = seq(0, max(data$total), by = 200)
     ) +
     scale_y_continuous(
-      breaks = seq(0, 500, by = 50)  # Set intervals for the y-axis
+      breaks = seq(0, 500, by = 50)
     )
 
-  return(ggplotly(plot))  # Convert the plot to an interactive Plotly plot
+  return(ggplotly(plot))
 }
